@@ -26,4 +26,6 @@ jobs:
           command: |
             chmod +x ./setup-heroku.sh
             ./setup-heroku.sh
-            git push heroku HEAD:master
+            git push heroku master
+            heroku run python manage.py deploy
+            heroku restart
