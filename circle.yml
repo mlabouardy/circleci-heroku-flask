@@ -21,6 +21,12 @@ jobs:
           paths:
             - "venv"
 
+      - run:
+          name: Deploy to Heroku
+          command: |
+            ./setup-heroku.sh
+            git push heroku HEAD:master
+
   deployment:
       production:
         branch: master
