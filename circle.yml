@@ -3,11 +3,12 @@ jobs:
   build:
     docker:
       - image: python:3.5
-  steps:
-    - checkout
+    steps:
+      - checkout
 
-    - name: Install dependencies
-      command: pip install -r requirements.txt
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt
 
 deployment:
   production:
