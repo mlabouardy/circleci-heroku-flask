@@ -6,12 +6,23 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
+
       - run:
           name: Install dependencies
-          command: pip install -r requirements.txt
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
 
-      - deployment:
-          production:
-            branch: master
-            heroku:
-              appname: flask-demo
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
+          paths:
+            - "venv"
+
+  deployment:
+      production:
+        branch: master
+        heroku:
+          appname: flask-demo
