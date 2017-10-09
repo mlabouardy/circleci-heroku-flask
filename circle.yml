@@ -10,8 +10,8 @@ jobs:
           name: Install dependencies
           command: pip install -r requirements.txt
 
-deployment:
-  production:
-    branch: master
-    heroku:
-      appname: flask-demo
+      - deployment:
+          production:
+            branch: master
+            heroku:
+              appname: flask-demo
