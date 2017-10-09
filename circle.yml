@@ -24,5 +24,6 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
+            chmod +x ./setup-heroku.sh
             ./setup-heroku.sh
             git push heroku HEAD:master
