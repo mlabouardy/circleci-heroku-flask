@@ -3,6 +3,15 @@ jobs:
   build:
     docker:
       - image: python:3.5
+        environment:
+          MYSQL_HOST: localhost
+          MYSQL_DB: mydb
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+      - image: mysql:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: mydb
     steps:
       - checkout
 
@@ -22,10 +31,15 @@ jobs:
             - "venv"
 
       - run:
+          name: Run unit tests
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            python tests.py
+
+      - run:
           name: Deploy to Heroku
           command: |
             chmod +x ./setup-heroku.sh
             ./setup-heroku.sh
             git push heroku master
-            heroku run python manage.py deploy
-            heroku restart
