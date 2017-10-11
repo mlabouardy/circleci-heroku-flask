@@ -19,5 +19,6 @@ EOF
 
 chmod 600 ~/.netrc
 
+"[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
 # Add heroku.com to the list of known hosts
 ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
