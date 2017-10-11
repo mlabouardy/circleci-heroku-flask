@@ -47,6 +47,8 @@ jobs:
             . venv/bin/activate
             python app/tests.py
 
+      - setup_remote_docker
+
       - run:
           name: Build & Push to DockerHub
           command: |
