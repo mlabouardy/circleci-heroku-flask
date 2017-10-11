@@ -59,9 +59,12 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-          name: Build & Push to DockerHub
+         name: Build Docker image
+         command: docker build -t mlabouardy/movies-store:$CIRCLE_SHA1 .
+
+      - run:
+          name: Push to DockerHub
           command: |
-            docker build -t mlabouardy/movies-store:$CIRCLE_SHA1 .
             docker login -u$DOCKERHUB_LOGIN -p$DOCKERHUB_PASSWORD
             docker push mlabouardy/movies-store:$CIRCLE_SHA1
 
