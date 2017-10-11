@@ -51,5 +51,5 @@ jobs:
           name: Deploy to Heroku
           command: |
             chmod +x .circleci/setup-heroku.sh
-            ./setup-heroku.sh
+            .circleci/setup-heroku.sh
             git push heroku master
