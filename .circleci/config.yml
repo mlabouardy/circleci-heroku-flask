@@ -52,4 +52,5 @@ jobs:
           command: |
             chmod +x .circleci/setup-heroku.sh
             .circleci/setup-heroku.sh
+            cd app/
             git push heroku master

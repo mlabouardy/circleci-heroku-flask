@@ -17,5 +17,7 @@ machine git.heroku.com
 	password $HEROKU_API_KEY
 EOF
 
+chmod 600 ~/.netrc
+
 # Add heroku.com to the list of known hosts
 ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
