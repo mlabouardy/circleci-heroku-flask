@@ -61,7 +61,7 @@ jobs:
       - run:
           name: Build & Push to DockerHub
           command: |
-            docker build -t mlabouardy/movies-store:$CIRCLE_SHA1
+            docker build -t mlabouardy/movies-store:$CIRCLE_SHA1 .
             docker login -u$DOCKERHUB_LOGIN -p$DOCKERHUB_PASSWORD
             docker push mlabouardy/movies-store:$CIRCLE_SHA1
 
