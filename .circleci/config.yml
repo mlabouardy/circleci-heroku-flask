@@ -31,6 +31,10 @@ jobs:
             - "venv"
 
       - run:
+          name: Wait for MySQL
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run:
           name: Run unit tests
           command: |
             python3 -m venv venv
@@ -40,6 +44,6 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-            chmod +x ./setup-heroku.sh
+            chmod +x .circleci/setup-heroku.sh
             ./setup-heroku.sh
             git push heroku master
